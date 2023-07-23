@@ -1,0 +1,48 @@
+create database arts;
+
+use arts;
+
+create table accounts(
+    id int primary key auto_increment,
+    username varchar(70) not null,
+    email varchar(70) not null,
+    password varchar(100) not null,
+    type ENUM("admin", "employee", "customer") not null,
+    created_int date default current_date(),
+    verify int,
+    verification_token varchar(150)
+)
+
+create table products(
+    id int primary key auto_increment,
+    product_year int(2),
+    name varchar(200),
+    price float,
+    description varchar(500),
+    img varchar(500)
+)
+
+alter table products auto_increment = 60000;
+
+create table cart(
+    id int primary key auto_increment,
+    product_id int,
+    customer_id int,
+    quantity int,
+    foreign key (product_id) references products(id),
+    foreign key (customer_id) references accounts(id)
+)
+
+create table orders(
+    id int primary key auto_increment,
+    customer_id int,
+    product_id int,
+    quantity int,
+    delivery_type varchar(1) default "V",
+    status ENUM("order pending", "processing order", "out for delivery", "delivered"),
+    courier_number varchar(40),
+    foreign key (customer_id) references accounts(id),
+    foreign key (product_id) references products(id)
+)
+
+alter table orders auto_increment = 80000000;
