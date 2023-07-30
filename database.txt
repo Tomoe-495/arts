@@ -9,7 +9,7 @@ create table accounts(
     password varchar(100) not null,
     type ENUM("admin", "employee", "customer") default "customer" not null,
     created_int date default current_date(),
-    verify int,
+    verify int default 0,
     verification_token varchar(150)
 )
 

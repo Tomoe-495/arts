@@ -1,5 +1,60 @@
 <?php
 
+function verificationCode($length=32) {
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $string = '';
+    $characterCount = strlen($characters);
+
+    for ($i = 0; $i < $length; $i++) {
+        $string .= $characters[rand(0, $characterCount - 1)];
+    }
+
+    return $string;
+}
+
+$type = $_GET["type"];
+$email = $_GET["email"];
+
+if($type == "register"){
+    $Username = $_GET["username"];
+    $password = $_GET["password"];
+    $Password = md5($password);
+    $verification = verificationCode();
+
+    include "dbcon.php";
+
+    $sql = "select * from accounts where email = '$email'";
+    $result = mysqli_query($conn, $sql);
+
+    $row = mysqli_num_rows($result);
+    echo $row;
+    if($row > 0){
+        setcookie("register", "registered", time()+10);
+        header("location: login.php");
+    }else{
+
+        $sql = "insert into accounts(username, email, password, verification_token) 
+        values('$Username', '$email', '$Password', '$verification')";
+        
+        
+        mysqli_query($conn, $sql);
+        
+        $sql = "select * from accounts where verification_token = '$verification' limit 1";
+        
+        $result = mysqli_query($conn, $sql);
+        
+        $row = mysqli_fetch_assoc($result);
+        
+        $id = $row["id"];
+        
+        $link = "localhost:5500/verify.php?id=$id&token=$verification";
+        
+        $message = "click here to verify your accounts -> $link";
+        $Altmessage = "click here to verify your accounts -> $link";
+    }
+
+}
+
 use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\Exception;
 
@@ -16,15 +71,22 @@ $mail->Password = 'Has562001^';
 $mail->SMTPSecure = 'tls';							
 $mail->Port	 = 587;
 
-$mail->setFrom('hasnain2202e@aptechsite.net', 'PHPMailer');		
+$mail->setFrom('hasnain2202e@aptechsite.net', 'Arts');		
 // $mail->addAddress('receiver1@gfg.com');
-$mail->addAddress('hasnainsiddique495@gmail.com', 'Name');
+if($type == "register"){
+    $mail->addAddress($email, $Username);
+}
 
-$mail->isHTML(true);								
-$mail->Subject = 'Subject';
-$mail->Body = 'HTML message body in <b>bold</b> ';
-$mail->AltBody = 'Body in plain text for non-HTML mail clients';
+$mail->isHTML(true);
+$mail->Subject = 'ARTS Verification';
+$mail->Body = $message;
+$mail->AltBody = $Altmessage;
 $mail->send();
-echo "Mail has been sent successfully!";
+// echo "Mail has been sent successfully!";
+
+if($type == "register"){
+    setcookie("register", "verify", time()+10);
+    header("location: login.php");
+}
 
 ?>

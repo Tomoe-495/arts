@@ -9,4 +9,55 @@ header {
   width: 100vw;
   height: 90px;
   border: 1px solid black;
+}
+
+.mail-notification {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: calc(100vw - 40px);
+  justify-content: space-between;
+  padding: 5px 20px;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+.mail-notification p {
+  margin: 0;
+}
+.mail-notification .close-noti {
+  cursor: pointer;
+  font-weight: 1000;
+  font-size: 1.5em;
+  border-radius: 50%;
+  transition: all 250ms;
+}
+.mail-notification .close-noti:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.verify-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(230, 230, 230);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.verify-page .verify-sect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.verify-page .verify-sect p {
+  font-size: 2em;
+  color: rgb(100, 100, 100);
+}
+.verify-page .verify-sect button {
+  font-family: inherit;
+}
+.verify-page .verify-sect button a {
+  text-decoration: none;
+  color: inherit;
 }/*# sourceMappingURL=style.css.map */
