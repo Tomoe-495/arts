@@ -1,5 +1,8 @@
 <?php  
 session_start();
+if(isset($_SESSION["username"])){
+    header("location: index.php");
+}
 if(isset($_GET["type"])){
     if(! isset($_POST)){
         header("location: login.php");
@@ -34,8 +37,8 @@ if(isset($_GET["type"])){
 </form>
 
 <form action="login.php?type=login" method="post">
-    <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
-    <input type="password" name="password" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$" title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long." required>
+<input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
+    <input type="password" name="password" placeholder="Enter Password" required>
     <input type="submit" value="Log in">
 </form>
 
@@ -72,6 +75,7 @@ if($_GET){
             $_SESSION["username"] = $row["username"];
             $_SESSION["email"] = $row["email"];
             $_SESSION["type"] = $row["type"];
+            header("location: index.php");
 
         }
 

@@ -15,7 +15,7 @@ create table accounts(
 
 create table products(
     id int primary key auto_increment,
-    product_year int(2),
+    product_year int(2) default 23,
     name varchar(200),
     price float,
     description varchar(500),
@@ -23,6 +23,9 @@ create table products(
 )
 
 alter table products auto_increment = 60000;
+
+insert into products(product_year, name, price, description, img) values
+()
 
 create table cart(
     id int primary key auto_increment,

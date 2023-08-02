@@ -34,8 +34,9 @@ if($rows > 0){
     mysqli_query($conn, $sql);
     echo "
     <p>Account Verified</p>
+    <span>you can login now</span>
     <button>
-        <a href='index.php'>Go To Home Page</a>
+        <a href='login.php'>Go To Login Page</a>
     </button>";
 }else{
     echo "<p>Invalid Verification credentials</p>";
@@ -44,7 +45,7 @@ if($rows > 0){
 ?>
     </div>
     
-    </div>
+</div>
 
 </body>
 </html>

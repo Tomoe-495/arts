@@ -5,10 +5,47 @@ body {
   overflow-x: hidden;
 }
 
+p {
+  margin: 0;
+}
+
 header {
-  width: 100vw;
-  height: 90px;
+  width: calc(100vw - 100px);
+  height: 70px;
+  padding: 0 50px;
   border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4em;
+}
+header nav ion-icon {
+  font-size: 1.5em;
+}
+header nav a {
+  text-decoration: none;
+  color: #353535;
+  position: relative;
+}
+header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #353535;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transition: all 250ms;
+}
+header nav a:hover::after {
+  transform: scale(1);
 }
 
 .mail-notification {
@@ -49,13 +86,28 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 1em;
 }
 .verify-page .verify-sect p {
   font-size: 2em;
   color: rgb(100, 100, 100);
 }
+.verify-page .verify-sect span {
+  color: rgb(80, 80, 80);
+}
 .verify-page .verify-sect button {
   font-family: inherit;
+  padding: 10px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  color: #353535;
+  cursor: pointer;
+  background-color: rgb(230, 230, 230);
+  filter: drop-shadow(rgba(0, 0, 0, 0.2) 0 5px 4px);
+  transition: all 250ms;
+}
+.verify-page .verify-sect button:hover {
+  filter: drop-shadow(rgba(0, 0, 0, 0.1) 0 2px 1px);
 }
 .verify-page .verify-sect button a {
   text-decoration: none;

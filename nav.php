@@ -1,5 +1,10 @@
 <?php
 $current_file = basename($_SERVER['PHP_SELF']);
+
+if(isset($_GET["login"])){
+    session_destroy();
+    header("location: index.php");
+}
 ?>
 
 
@@ -10,7 +15,21 @@ $current_file = basename($_SERVER['PHP_SELF']);
         <a href="#">Store</a>
         <a href="#">Contact Us</a>
         <?php
-        if($current_file != "login.php"){
+        if(isset($_SESSION["username"])){
+            if($_SESSION["type"] == "customer"){
+                echo "<a href='#'>My Orders<a>
+                <a href='#'><ion-icon name='bag'></ion-icon></a>
+                <a href='index.php?login=destroy' type='Logout'><ion-icon name='person'></ion-icon>logout</a>";
+            }else if($_SESSION["type"] == "admin"){
+                echo "<a href='#'>Orders</a>
+                <a href='#'>dashboard</a>
+                <a href='index.php?login=destroy' title='Logout'><ion-icon name='person'></ion-icon>logout</a>";
+            }else if($_SESSION["type"] == "employee"){
+                echo "<a href='#'>Orders</a>
+                <a href='index.php?login=destroy' title='Logout'><ion-icon name='person'></ion-icon>logout</a>";
+            }
+        }
+        else if($current_file != "login.php"){
             echo "<a href='login.php'>login / Sign up</a>";
         }
         ?>        
