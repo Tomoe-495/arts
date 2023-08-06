@@ -24,6 +24,15 @@ create table products(
 
 alter table products auto_increment = 60000;
 
+arts, 
+gift articles,
+greeting cards,
+dolls,
+files,
+hand bags,
+wallets,
+cosmetics
+
 insert into products(product_year, name, price, description, img) values
 ()
 

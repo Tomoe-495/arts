@@ -5,8 +5,14 @@ body {
   overflow-x: hidden;
 }
 
-p {
+p, h1, h2 {
   margin: 0;
+  padding: 0;
+}
+
+.center-v {
+  display: flex;
+  align-items: center;
 }
 
 header {

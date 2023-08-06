@@ -19,14 +19,14 @@ if(isset($_GET["login"])){
             if($_SESSION["type"] == "customer"){
                 echo "<a href='#'>My Orders<a>
                 <a href='#'><ion-icon name='bag'></ion-icon></a>
-                <a href='index.php?login=destroy' type='Logout'><ion-icon name='person'></ion-icon>logout</a>";
+                <a href='index.php?login=destroy' type='Logout' class='center-v'><ion-icon name='person'></ion-icon>logout</a>";
             }else if($_SESSION["type"] == "admin"){
                 echo "<a href='#'>Orders</a>
                 <a href='#'>dashboard</a>
-                <a href='index.php?login=destroy' title='Logout'><ion-icon name='person'></ion-icon>logout</a>";
+                <a href='index.php?login=destroy' title='Logout' class='center-v'><ion-icon name='person'></ion-icon>logout</a>";
             }else if($_SESSION["type"] == "employee"){
                 echo "<a href='#'>Orders</a>
-                <a href='index.php?login=destroy' title='Logout'><ion-icon name='person'></ion-icon>logout</a>";
+                <a href='index.php?login=destroy' title='Logout' class='center-v'><ion-icon name='person'></ion-icon>logout</a>";
             }
         }
         else if($current_file != "login.php"){
