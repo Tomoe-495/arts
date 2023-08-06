@@ -35,8 +35,9 @@ button {
 .themebar ion-icon {
   z-index: 88;
   padding: 5px;
-  font-size: 1.3em;
+  font-size: 1.4em;
   cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0.8);
   border-radius: 7px 0 0 7px;
   color: #464646;
