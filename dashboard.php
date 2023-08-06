@@ -18,6 +18,39 @@ if($_SESSION["type"] != "admin"){
     header("location: index.php");
 }
 include "nav.php";
+
+// adding the employee here
+
+if($_POST){
+    $Username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $Password = md5($password);
+
+    include "dbcon.php";
+
+    $sql = "INSERT into accounts(username, email, password, type, verify) values
+    ('$Username', '$email', '$Password', 'employee', 1)";
+
+    $result = mysqli_query($conn, $sql);
+
+    if($result){
+        setcookie("register", "added", time()+5);
+        header("location: dashboard.php");
+    }
+}else if(isset($_GET["delete"])){
+    $id = $_GET["delete"];
+    include "dbcon.php";
+
+    $sql = "DELETE FROM accounts where id = $id";
+
+    $result = mysqli_query($conn, $sql);
+    if($result){
+        setcookie("register", "removed", time()+5);
+        header("location: dashboard.php");
+    }
+}
+
 ?>
 
 <div class="dash-container">
@@ -27,7 +60,55 @@ include "nav.php";
     </div>
     <div class="d-mainbar">
         <div class="employees active sect" data-all>
+            <table class="employee-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Created On</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
 
+                    <?php
+                    
+                    include "dbcon.php";
+
+                    $sql = "SELECT * FROM accounts where type = 'employee'";
+
+                    $result = mysqli_query($conn, $sql);
+                    $result = mysqli_query($conn, $sql);
+                    $numRows = mysqli_num_rows($result);
+
+                    if($numRows != 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            $id = $row["id"];
+                            $username = $row["username"];
+                            $email = $row["email"];
+                            $created = $row["created_int"];
+                            
+                            $t_row = "<tr>    
+                                    <td>$username</td>
+                                    <td>$email</td>
+                                    <td>$created</td>
+                                    <td><a href='dashboard.php?delete=$id'>Delete</a></td>
+                                </tr>";
+                            echo $t_row;
+                        }
+                    }
+
+                    ?>
+
+                </tbody>
+            </table>
+            <?php
+            
+            if($numRows == 0){
+                echo "<h1 class='no-emp'>There are no Employee</h1>";
+            }
+
+            ?>
         </div>
         <div class="addemployee sect" data-emp>
 
@@ -63,6 +144,35 @@ function switchPanel(btn, sect){
         document.querySelector(`[${btn}]`).classList.add("active");
     })
 }
+
+let bar = document.querySelector("[data-noti]");
+let barPara = document.querySelector("[data-noti-para]");
+let barClose = document.querySelector("[data-noti-close]");
+
+let green = "#78e49c";
+let red = "#e06c6c";
+let cookies = checkCookies();
+
+if(cookies["register"]){
+
+    if(cookies["register"] == "added"){
+        notifition("Employee has been added", green);
+    }else if(cookies["register"] == "removed"){
+        notifition("Employee has been removed", red);
+    }
+}
+
+
+function notifition(msg, color){
+    bar.style.backgroundColor = color;
+    barPara.innerHTML = msg;
+    bar.style.display = "flex";
+}
+
+barClose.addEventListener("click", () => {
+    bar.style.display = "none";
+})
+
 
 </script>
 

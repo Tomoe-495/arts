@@ -1,2 +1,10 @@
 # arts
  Aptech Sem-2 e-project
+
+first off:
+open the database.txt file
+and run all the queries in phpmyadmin or whatever you use to run mysql queries
+
+you can login as admin:
+email: admin@gmail.com
+password: admin

@@ -32,39 +32,26 @@ if(isset($_GET["type"])){
 <div class="main-content">
     <!-- Buttons to toggle between forms -->
     <div class="toggle-buttons">
-      <button id="register-btn" class="button-title active">REGISTER</button>
-      <span>/</span>
-      <button id="login-btn" class="button-title">LOGIN</button>
+        <button id="register-btn" class="button-title active">REGISTER</button>
+        <span>/</span>
+        <button id="login-btn" class="button-title">LOGIN</button>
     </div>
 
     <!-- Register Form -->
     <form id="register-form" action="login.php?type=register" method="post" class="log-form active-form registration-form">
-      <input type="text" name="username" pattern="^[a-zA-Z0-9_]{3,20}$" placeholder="Enter Username" title="Username must be 3 to 20 characters long and can only contain letters, digits, and underscores." required>
-      <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
-      <input type="password" name="password" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$" title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long." required>
-      <input type="submit" value="Sign up">
+        <input type="text" name="username" pattern="^[a-zA-Z0-9_]{3,20}$" placeholder="Enter Username" title="Username must be 3 to 20 characters long and can only contain letters, digits, and underscores." required>
+        <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
+        <input type="password" name="password" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$" title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long." required>
+        <input type="submit" value="Sign up">
     </form>
 
     <!-- Login Form -->
     <form id="login-form" action="login.php?type=login" method="post" class="log-form login-form">
-      <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
-      <input type="password" name="password" placeholder="Enter Password" required>
-      <input type="submit" value="Log in">
+        <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <input type="submit" value="Log in">
     </form>
-  </div>
-
-<!-- <form action="login.php?type=register" method="post">
-    <input type="text" name="username" pattern="^[a-zA-Z0-9_]{3,20}$" placeholder="Enter Username" title="Username must be 3 to 20 characters long and can only contain letters, digits, and underscores." required>
-    <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
-    <input type="password" name="password" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$" title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long." required>
-    <input type="submit" value="Sign up">
-</form>
-
-<form action="login.php?type=login" method="post">
-<input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
-    <input type="password" name="password" placeholder="Enter Password" required>
-    <input type="submit" value="Log in">
-</form> -->
+</div>
 
 <br>
 
@@ -91,7 +78,7 @@ if($_GET){
         $numRows = mysqli_num_rows($result);
 
         if($numRows == 0){
-            setcookie("register", "exist", time()+10);
+            setcookie("register", "exist", time()+5);
             header("location: login.php");
         }else{
             $row = mysqli_fetch_assoc($result);
