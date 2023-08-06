@@ -29,7 +29,31 @@ if(isset($_GET["type"])){
 <?php include "nav.php"?>
 
 
-<form action="login.php?type=register" method="post">
+<div class="main-content">
+    <!-- Buttons to toggle between forms -->
+    <div class="toggle-buttons">
+      <button id="register-btn" class="button-title active">REGISTER</button>
+      <span>/</span>
+      <button id="login-btn" class="button-title">LOGIN</button>
+    </div>
+
+    <!-- Register Form -->
+    <form id="register-form" action="login.php?type=register" method="post" class="log-form active-form registration-form">
+      <input type="text" name="username" pattern="^[a-zA-Z0-9_]{3,20}$" placeholder="Enter Username" title="Username must be 3 to 20 characters long and can only contain letters, digits, and underscores." required>
+      <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
+      <input type="password" name="password" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$" title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long." required>
+      <input type="submit" value="Sign up">
+    </form>
+
+    <!-- Login Form -->
+    <form id="login-form" action="login.php?type=login" method="post" class="log-form login-form">
+      <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
+      <input type="password" name="password" placeholder="Enter Password" required>
+      <input type="submit" value="Log in">
+    </form>
+  </div>
+
+<!-- <form action="login.php?type=register" method="post">
     <input type="text" name="username" pattern="^[a-zA-Z0-9_]{3,20}$" placeholder="Enter Username" title="Username must be 3 to 20 characters long and can only contain letters, digits, and underscores." required>
     <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
     <input type="password" name="password" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$" title="Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long." required>
@@ -40,7 +64,7 @@ if(isset($_GET["type"])){
 <input type="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Enter Email" title="Please enter a valid email address." required>
     <input type="password" name="password" placeholder="Enter Password" required>
     <input type="submit" value="Log in">
-</form>
+</form> -->
 
 <br>
 
@@ -85,6 +109,32 @@ if($_GET){
 ?>
 
 <script>
+
+    // Get the register and login buttons
+const registerBtn = document.getElementById("register-btn");
+const loginBtn = document.getElementById("login-btn");
+
+// Get the register and login forms
+const registerForm = document.getElementById("register-form");
+const loginForm = document.getElementById("login-form");
+
+// Add event listeners to the buttons
+registerBtn.addEventListener("click", () => {
+  // Show the register form and hide the login form
+  registerForm.classList.add("active-form");
+  loginForm.classList.remove("active-form");
+  registerBtn.classList.add("active");
+  loginBtn.classList.remove("active");
+});
+
+loginBtn.addEventListener("click", () => {
+  // Show the login form and hide the register form
+  loginForm.classList.add("active-form");
+  registerForm.classList.remove("active-form");
+  loginBtn.classList.add("active");
+  registerBtn.classList.remove("active");
+});
+
 
 let bar = document.querySelector("[data-noti]");
 let barPara = document.querySelector("[data-noti-para]");

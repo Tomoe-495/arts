@@ -12,6 +12,10 @@ p, h1, h2
     display: flex
     align-items: center
 
+button
+    font-family: inherit
+    cursor: pointer
+
 @mixin flex-center($ver:false)
     display: flex
     justify-content: center
@@ -73,6 +77,81 @@ header
             background: rgba(255, 255, 255,.3)
 
 
+
+/* Global styles */
+body
+  margin: 0
+  padding: 0
+  font-family: Arial, sans-serif
+
+/* Main content styles */
+.main-content
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  height: calc(100vh - 70px)
+
+/* Buttons to toggle between forms */
+.toggle-buttons
+  display: flex
+  margin-bottom: 20px
+
+.button-title
+    font-size: 18px
+    font-weight: normal
+    margin-right: 10px
+    color: #333
+    text-decoration: none
+    border: none
+    background-color: transparent
+    cursor: pointer
+    font-family: inherit
+
+    &.active
+        color: var(--accent)
+        text-decoration: underline
+
+/* Forms styles */
+.log-form
+  display: none
+  max-width: 400px
+  width: 100%
+  background-color: rgba(240, 240, 240, 0.9) /* Slight grey background */
+  padding: 30px /* Increased padding */
+  border-radius: 10px /* Rounded corners */
+  text-align: center
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.1)) /* Drop-shadow effect */
+
+.active-form
+  display: block
+
+/* Align inputs vertically */
+.registration-form input,
+.login-form input
+  display: block
+  width: 100%
+  margin-bottom: 10px
+  padding: 10px
+  border: none
+  border-bottom: 1px solid #ccc
+  border-radius: 0
+  background-color: transparent
+  text-align: center
+  font-family: inherit
+
+input[type="submit"]
+  background-color: var(--accent)
+  color: white
+  font-family: inherit
+
+/* Remove outline on focus */
+.registration-form input:focus,
+.login-form input:focus
+  outline: none
+  border-bottom: 2px solid var(--accent)
+
+
 .verify-page
     width: 100vw
     height: 100vh
@@ -101,3 +180,104 @@ header
             a
                 text-decoration: none
                 color: inherit
+
+
+.dash-container
+  width: 100vw
+  height: calc(100vh - 70px)
+  display: flex
+
+.d-sidebar
+  width: 250px
+  max-height: 100%
+  background: rgb(240, 240, 240)
+  transition: background-color 0.3s
+  border-right: 1px solid rgba(0, 0, 0, 0.1)
+  padding: 20px
+  display: flex
+  flex-direction: column
+
+  button
+    width: 100%
+    padding: 15px 10px 15px 10px
+    margin-bottom: 10px
+    background-color: white
+    border: 1px solid #ccc
+    border-radius: 4px
+    cursor: pointer
+    transition: background-color 0.3s, border-color 0.3s
+    color: #333
+
+    &:hover
+      background-color: #f0f0f0
+      border-color: #aaa
+
+    &.active
+      background-color: var(--accent)
+      color: white
+      border-color: var(--accent)
+
+.d-mainbar
+  flex: 1
+  padding: 20px
+  background-color: #f5f5f5
+  overflow-y: auto /* Enable vertical scrollbar when content exceeds the height */
+
+  .addemployee
+    display: none
+
+  .active.addemployee
+    display: block
+
+  .d-form-sect
+    max-width: 400px
+    margin: 0 auto
+
+    form
+      display: flex
+      flex-direction: column
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="submit"]
+        margin-bottom: 10px
+        padding: 10px
+        border: 1px solid #ccc
+        border-radius: 4px
+
+      input[type="submit"]
+        background-color: var(--accent)
+        color: white
+        cursor: pointer
+
+        &:hover
+          background-color: #555
+
+
+
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px)
+  .dash-container
+    flex-direction: column
+
+  .d-sidebar
+    width: 100%
+    max-height: initial
+    border-right: none
+    padding: 20px 0
+    display: flex
+    flex-direction: row /* Align buttons horizontally */
+
+  .d-mainbar
+    flex: 1
+    padding: 20px
+
+  .d-sidebar button
+    margin-right: 0 /* Remove the margin between buttons in responsive layout */
+
+@media screen and (max-width: 576px)
+  .d-form-sect
+    max-width: 100%
