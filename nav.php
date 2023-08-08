@@ -9,7 +9,8 @@ if(isset($_GET["login"])){
 
 
 <header>
-    <div class="logo">LOGO</div>
+    <!-- <div class="logo">LOGO</div> -->
+    <img class="logo" src="uploads/logo.png" alt="logo">
     <nav>
         <a href="index.php" class='link'>Home</a>
         <a href="store.php" class='link'>Store</a>
