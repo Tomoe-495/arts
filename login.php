@@ -83,6 +83,10 @@ if($_GET){
         }else{
             $row = mysqli_fetch_assoc($result);
 
+            if(! $row["verify"]){
+               setcookie("register", "verify", time()+5)
+            } 
+
             $_SESSION["username"] = $row["username"];
             $_SESSION["email"] = $row["email"];
             $_SESSION["type"] = $row["type"];
@@ -151,6 +155,8 @@ if(cookies["register"]){
         notifition("A User has already been registered with that email", red)
     }else if(cookies["register"] == "exist"){
         notifition("Invalid Email or Password", red);
+    }else if(cookies["register"] == "verify"){
+        notification("verify your email address", red);
     }
 }
 
