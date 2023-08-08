@@ -84,7 +84,8 @@ if($_GET){
             $row = mysqli_fetch_assoc($result);
 
             if(! $row["verify"]){
-               setcookie("register", "verify", time()+5)
+                setcookie("register", "verify", time()+5);
+                header("location: login.php");
             } 
 
             $_SESSION["username"] = $row["username"];
