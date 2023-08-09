@@ -78,7 +78,6 @@ if($_POST){
                     $sql = "SELECT * FROM accounts where type = 'employee'";
 
                     $result = mysqli_query($conn, $sql);
-                    $result = mysqli_query($conn, $sql);
                     $numRows = mysqli_num_rows($result);
 
                     if($numRows != 0){

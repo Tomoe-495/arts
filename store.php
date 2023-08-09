@@ -9,41 +9,53 @@
 <body>
     <?php include "nav.php" ?>
 
-    <div class="product-page">
-        <div class="category-sidebar">
-            <form class="category-form" method="GET" action="store.php">
-                <h2>Categories</h2>
-                <label><input type="radio" name="category" value="gift"> Gift Articles</label>
-                <label><input type="radio" name="category" value="cards"> Greeting Cards</label>
-                <label><input type="radio" name="category" value="dolls"> Dolls</label>
-                <label><input type="radio" name="category" value="files"> Files</label>
-                <label><input type="radio" name="category" value="handbags"> Hand Bags</label>
-                <label><input type="radio" name="category" value="wallets"> Wallets</label>
-                <label><input type="radio" name="category" value="cosmetics"> Cosmetics</label>
-                <div class="submit-button-container">
-                    <button type="submit" class="submit-button">Filter</button>
-                </div>
-            </form>
+    <section class="products-section">
+        <div class="search-bar">
+            <input type="search" placeholder="Search for anything" value="<?php if(isset($_GET["search"])) echo $_GET["search"] ?>" data-search>
         </div>
-        <div class="main-section">
-            <div class="search-bar">
-                <input type="search" placeholder="Search for anything" value="<?php if(isset($_GET["search"])) echo $_GET["search"] ?>" data-search>
-            </div>
-            <div class="product-list">
-                <div class="product-card">
-                    <img src="https://source.unsplash.com/300x200/?product1" alt="Product 1" class="product-image">
-                    <h3 class="product-name">Product 1</h3>
-                    <p class="product-price">$25</p>
-                </div>
-                <div class="product-card">
-                    <img src="https://source.unsplash.com/300x200/?product2" alt="Product 2" class="product-image">
-                    <h3 class="product-name">Product 2</h3>
-                    <p class="product-price">$35</p>
-                </div>
-                <!-- Add more product cards here as needed -->
-            </div>
+        
+        <div class="product-list">
+            <!-- Sample Product Cards -->
+
+
+            <?php
+            
+            include "dbcon.php";
+
+            if(isset($_GET["search"])){
+                $search = $_GET["search"];
+                $sql = "SELECT * FROM products WHERE name LIKE '%$search%'";
+            }else{
+                $sql = "SELECT * FROM products";
+            }
+
+            $result = mysqli_query($conn, $sql);
+            $numRows = mysqli_num_rows($result);
+
+            if($numRows == 0){
+                echo "<h1 class='no-emp'>nothing found</h1>";
+            }
+
+            while($row = mysqli_fetch_assoc($result)){
+                $id = $row["id"];
+                $product_year = $row["product_year"];
+                $name = $row["name"];
+                $price = $row["price"];
+                $description = $row["description"];
+                $images = $row["img"];
+                $img = strpos($images, ',') !== false ? explode(',', $images)[0] : $images;
+
+                echo "<a href='item.php?id=$id' class='product-card'>
+                        <img src='uploads/products/$img'>
+                        <p class='p-name'>$name</p>
+                        <p class='price'>Rs. $price</p>
+                    </a>";
+            }
+
+            ?>
+
         </div>
-    </div>
+    </section>
 
     <script>
 

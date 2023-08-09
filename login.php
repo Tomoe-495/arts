@@ -88,6 +88,7 @@ if($_GET){
                 header("location: login.php");
             } 
 
+            $_SESSION["id"] = $row["id"];
             $_SESSION["username"] = $row["username"];
             $_SESSION["email"] = $row["email"];
             $_SESSION["type"] = $row["type"];
