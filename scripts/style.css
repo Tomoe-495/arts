@@ -240,7 +240,7 @@ header .hamburger .bar3 {
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(to top, rgba(50, 50, 50, 0), rgb(255, 255, 255));
+  background: linear-gradient(to top, rgba(235, 139, 219, 0.2), rgb(255, 255, 255));
 }
 
 .landing-content {
@@ -283,7 +283,7 @@ header .hamburger .bar3 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 2em;
-  padding: 30px;
+  padding: 80px 30px;
 }
 
 .feature-card {
@@ -393,13 +393,108 @@ header .hamburger .bar3 {
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* Global styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
+.interested-section {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-image: url("../uploads/interested.jpg");
+  background-color: rgba(0, 0, 0, 0.5);
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-position: center;
+  padding: 50px 0 150px 0;
 }
 
+.interested-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.interested-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.interested-description {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  width: 50%;
+}
+
+.interested-button {
+  display: inline-block;
+  padding: 12px 30px;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.interested-button:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.footer {
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-social ion-icon {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0 10px;
+  transition: color 0.2s;
+}
+.footer-social ion-icon:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+@media screen and (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .footer-links {
+    display: flex;
+    align-items: center;
+  }
+  .footer-links a {
+    margin: 0 10px;
+  }
+}
 /* Main content styles */
 .main-content {
   display: flex;

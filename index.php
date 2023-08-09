@@ -45,6 +45,15 @@
         </div>
     </section>
 
+    <section class="interested-section">
+        <div class="interested-content">
+            <h2 class="interested-title">Explore Our Collection</h2>
+            <p class="interested-description">
+                Discover our amazing products and explore a world of possibilities. Whether it's gifts, accessories, or more, we have something for everyone.
+            </p>
+            <a href="store.php" class="interested-button">Explore Now</a>
+        </div>
+    </section>
 
     <section class="help-section">
         <div class="help-content">
@@ -62,11 +71,7 @@
     </section>
 
 
+    <?php include "footer.php"?>
 
-
-
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 </html>
