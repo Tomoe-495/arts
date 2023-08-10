@@ -11,6 +11,11 @@
     </head>
     <body>
 
+<div class="mail-notification" data-noti>
+    <p data-noti-para></p>
+    <ion-icon class="close-noti" name="close-outline" data-noti-close></ion-icon>
+</div>
+
     <?php include "nav.php"?>
 
     <section class="landing-section">
@@ -72,6 +77,36 @@
 
 
     <?php include "footer.php"?>
+
+    <script>
+
+
+let bar = document.querySelector("[data-noti]");
+let barPara = document.querySelector("[data-noti-para]");
+let barClose = document.querySelector("[data-noti-close]");
+
+let cookies = checkCookies();
+let green = "#78e49c";
+let red = "#e06c6c";
+
+if(cookies["order"]){
+    if(cookies["register"] == "placed"){
+        notifition("Your orders have been placed", green)
+    }
+}
+
+function notifition(msg, color){
+    bar.style.backgroundColor = color;
+    barPara.innerHTML = msg;
+    bar.style.display = "flex";
+}
+
+barClose.addEventListener("click", () => {
+    bar.style.display = "none";
+})
+
+
+    </script>
 
     </body>
 </html>

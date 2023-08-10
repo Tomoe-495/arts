@@ -34,15 +34,15 @@ hand bags,
 wallets,
 cosmetics
 
-insert into products(product_year, name, price, description, img) values
-(19, 'Dotz Brand Customize 3d illusion lamp, 3D Light Lamp, Night Lamp, Decoration Piece, Gift Piece', 895, "Provides over 50,000 hours immediately of bright light, Includes an energy-efficient LED strip (Saving energy), Beautiful to have at Home or Office, Specifications: Power consumer: 0.012kw.h/24 hours, LED Life: up to 50,000 hours, 3D Illusion Acrylic Plate, Warranty available, Dimensions: 10 Inch, What’s in the box? 3D Lamp Acrylic Plate, Lamp LED Base", "lamp-1.jpg,lamp-2.jpg,lamp-3.jpg"),
-(20, "Himalayan Natural Salt Lamp USB Multi-Color 7 Color Changing USB Himalayan Salt Lamp for Home Decoration", 259, "This Himalayan Salt Lamp features a warm white led that is great for creating a zen or relaxing area or workspace. Can be used as a great night light as well. Product Details: totally zen out with this himalayan salt lamp. this lamp transforms any room into a bohemian paradise & gives off a relaxing, warm colored hue.", "rock-1.jpg,rock-2.jpg,rock-3.jpg"),
-(23, "Black Bronzing Greeting Card Thank You Cards Bronzing Invitations Postcard Blessing Message Cards Small Card Blank with Envelope", 332, "Birthday cards are suitable for people of all ages and genders; you can also make these birthday cards more personalized, contain your unique ideas, and send sincere wishes to your family or friends", "birthcard-1.jpg,birthcard-2.jpg,birthcard-3.jpg"),
-(23, "Small Greeting Card Love Wishing Cards", 200, "Small cute Love card to give to your loved ones or place on the gift, with blank space inside to write your message and pack in colored envelope.", "lovecard-1.jpg"),
-(23, "Small Greeting Card Love Wishing Cards", 200, "Small cute Love card to give to your loved ones or place on the gift, with blank space inside to write your message and pack in colored envelope.", "anotherlovecard-1.jpg"),
-(23, "Small Greeting Card Cute Birthday Wishing Cards", 200, "Small cute birthday card to give to someone or place on the gift, with blank space inside to write your message and pack in colored envelope.", "birthwish-1.jpg"),
-(21, "12cm Rebirth Dolls Toys Mini Cute Sleeping Baby Series Doll Cartoon Animal Toys for Girls Birthday Gift", 599, "Introducing Rebirth Dolls' 12cm Mini Cute Sleeping Baby Series! These charming cartoon animal toys are an absolute delight for girls. Crafted with love, they make a perfect birthday gift. Compact and cute, they're ideal companions for playtime adventures. Spark joy with Rebirth Dolls today!", "bundoll-1.jpg,bundoll-2.jpg,bundoll-3.jpg"),
-(19, "Frozen - Elsa Classic Doll for Girls - 9 inch", 999, "Experience the magic of Disney's Frozen with the Elsa Classic Doll for Girls! Standing 9 inches tall, she's a captivating replica of the beloved character. With her iconic blue gown and poseable arms, she's ready for endless adventures. A timeless gift that'll warm any heart!", "frozen-1.jpg,frozen-2.jpg")
+insert into products(product_year, name, price, description, img, type) values
+(19, 'Dotz Brand Customize 3d illusion lamp, 3D Light Lamp, Night Lamp, Decoration Piece, Gift Piece', 895, "Provides over 50,000 hours immediately of bright light, Includes an energy-efficient LED strip (Saving energy), Beautiful to have at Home or Office, Specifications: Power consumer: 0.012kw.h/24 hours, LED Life: up to 50,000 hours, 3D Illusion Acrylic Plate, Warranty available, Dimensions: 10 Inch, What’s in the box? 3D Lamp Acrylic Plate, Lamp LED Base", "lamp-1.jpg,lamp-2.jpg,lamp-3.jpg", "decoration"),
+(20, "Himalayan Natural Salt Lamp USB Multi-Color 7 Color Changing USB Himalayan Salt Lamp for Home Decoration", 259, "This Himalayan Salt Lamp features a warm white led that is great for creating a zen or relaxing area or workspace. Can be used as a great night light as well. Product Details: totally zen out with this himalayan salt lamp. this lamp transforms any room into a bohemian paradise & gives off a relaxing, warm colored hue.", "rock-1.jpg,rock-2.jpg,rock-3.jpg", "decoration"),
+(23, "Black Bronzing Greeting Card Thank You Cards Bronzing Invitations Postcard Blessing Message Cards Small Card Blank with Envelope", 332, "Birthday cards are suitable for people of all ages and genders; you can also make these birthday cards more personalized, contain your unique ideas, and send sincere wishes to your family or friends", "birthcard-1.jpg,birthcard-2.jpg,birthcard-3.jpg", "greeting card"),
+(23, "Small Greeting Card Love Wishing Cards", 200, "Small cute Love card to give to your loved ones or place on the gift, with blank space inside to write your message and pack in colored envelope.", "lovecard-1.jpg", "greeting card"),
+(23, "Small Greeting Card Love Wishing Cards", 200, "Small cute Love card to give to your loved ones or place on the gift, with blank space inside to write your message and pack in colored envelope.", "anotherlovecard-1.jpg", "greeting card"),
+(23, "Small Greeting Card Cute Birthday Wishing Cards", 200, "Small cute birthday card to give to someone or place on the gift, with blank space inside to write your message and pack in colored envelope.", "birthwish-1.jpg", "greeting card"),
+(21, "12cm Rebirth Dolls Toys Mini Cute Sleeping Baby Series Doll Cartoon Animal Toys for Girls Birthday Gift", 599, "Introducing Rebirth Dolls' 12cm Mini Cute Sleeping Baby Series! These charming cartoon animal toys are an absolute delight for girls. Crafted with love, they make a perfect birthday gift. Compact and cute, they're ideal companions for playtime adventures. Spark joy with Rebirth Dolls today!", "bundoll-1.jpg,bundoll-2.jpg,bundoll-3.jpg", "doll"),
+(19, "Frozen - Elsa Classic Doll for Girls - 9 inch", 999, "Experience the magic of Disney's Frozen with the Elsa Classic Doll for Girls! Standing 9 inches tall, she's a captivating replica of the beloved character. With her iconic blue gown and poseable arms, she's ready for endless adventures. A timeless gift that'll warm any heart!", "frozen-1.jpg,frozen-2.jpg", "doll")
 
 create table cart(
     id int primary key auto_increment,
@@ -59,7 +59,7 @@ create table orders(
     product_id int,
     quantity int,
     delivery_type varchar(1) default "V",
-    status ENUM("order pending", "processing order", "out for delivery", "delivered"),
+    status ENUM("order pending", "processing order", "out for delivery", "delivered") default "order pending",
     courier_number varchar(40),
     foreign key (customer_id) references accounts(id),
     foreign key (product_id) references products(id)

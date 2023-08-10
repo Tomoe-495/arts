@@ -92,8 +92,11 @@ if($_GET){
             $_SESSION["username"] = $row["username"];
             $_SESSION["email"] = $row["email"];
             $_SESSION["type"] = $row["type"];
-            header("location: index.php");
+            // header("location: index.php");
 
+            echo "<script>";
+            echo "location.href = 'index.php'";
+            echo "</script>";
         }
 
     }
