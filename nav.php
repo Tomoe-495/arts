@@ -115,15 +115,15 @@ $total_price = 0;
         <?php
         if(isset($_SESSION["username"])){
             if($_SESSION["type"] == "customer"){
-                echo "<a href='#' class='link'>My Orders<a>
+                echo "<a href='orders.php' class='link'>My Orders<a>
                 <a class='link center-v' data-cart-btn><ion-icon name='bag'></ion-icon>Cart</a>
                 <a href='index.php?login=destroy' type='Logout' class='center-v link'><ion-icon name='person'></ion-icon>logout</a>";
             }else if($_SESSION["type"] == "admin"){
-                echo "<a href='#' class='link'>Orders</a>
+                echo "<a href='orders.php' class='link'>Orders</a>
                 <a href='dashboard.php' class='link'>dashboard</a>
                 <a href='index.php?login=destroy' title='Logout' class='center-v link'><ion-icon name='person'></ion-icon>logout</a>";
             }else if($_SESSION["type"] == "employee"){
-                echo "<a href='#' class='link'>Orders</a>
+                echo "<a href='orders.php' class='link'>Orders</a>
                 <a href='index.php?login=destroy' title='Logout' class='center-v link'>
                     <ion-icon name='person'></ion-icon>logout
                 </a>";

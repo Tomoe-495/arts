@@ -90,7 +90,7 @@ let green = "#78e49c";
 let red = "#e06c6c";
 
 if(cookies["order"]){
-    if(cookies["register"] == "placed"){
+    if(cookies["order"] == "placed"){
         notifition("Your orders have been placed", green)
     }
 }

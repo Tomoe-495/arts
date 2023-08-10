@@ -58,6 +58,7 @@ create table orders(
     customer_id int,
     product_id int,
     quantity int,
+    price float,
     delivery_type varchar(1) default "V",
     status ENUM("order pending", "processing order", "out for delivery", "delivered") default "order pending",
     courier_number varchar(40),
