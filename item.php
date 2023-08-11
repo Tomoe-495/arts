@@ -57,12 +57,19 @@ $images = explode(",",$row["img"]);
             
             <div class="product-details">
                 <p class="product-type"><span><?php echo $type?></span></p>
+                <span class="product-id">Product id:  <span><?php echo $product_year.$id?></span></span>
                 <h2 class="product-name"><?php echo $name?></h2>
                 <p class="product-price">Rs. <?php echo $price?></p>
-                <form method="post" action="addcart.php?id=<?php echo $id?>" class="add-to-cart">
-                    <input name="quantity" type="number" min="1" value="1">
-                    <button class='addcart'>Add to Cart</button>
-                </form>
+                <?php
+                
+                if($_SESSION["type"] == "customer"){
+                    echo "<form method='post' action='addcart.php?id=<?php echo $id?>' class='add-to-cart'>
+                        <input name='quantity' type='number' min='1' value='1'>
+                        <button class='addcart'>Add to Cart</button>
+                    </form>";
+                }
+
+                ?>
                 <p class='product-desc'><?php echo $description?></p>
             </div>
 

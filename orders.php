@@ -54,7 +54,7 @@ if($_POST){
         $quantity = $row["quantity"];
         $status = $row["status"];
         $courier = $row["courier_number"];
-        $courier = ($courier == "") ? "N/A" : $courier;
+        // $courier = ($courier == "") ? "N/A" : $courier;
         $type = $row["delivery_type"];
 
         $sql = "SELECT * from products where id = $p_id";
@@ -79,10 +79,10 @@ if($_POST){
                         <p>Total Price: Rs. $price</p>
                         <form method='post' action='orders.php?id=$o_id' class='admin-options'>
                             <select name='status' value='$status'>
-                                <option value='order pending'>Order Pending</option>
-                                <option value='processing order'>Processing Order</option>
-                                <option value='out for delivery'>Out for Delivery</option>
-                                <option value='delivered'>Delivered</option>
+                                <option value='order pending' " . ($status == 'order pending' ? 'selected' : '') . ">Order Pending</option>
+                                <option value='processing order' " . ($status == 'processing order' ? 'selected' : '') . ">Processing Order</option>
+                                <option value='out for delivery' " . ($status == 'out for delivery' ? 'selected' : '') . ">Out for Delivery</option>
+                                <option value='delivered' " . ($status == 'delivered' ? 'selected' : '') . ">Delivered</option>
                             </select>
                             <input type='text' name='courier' value='$courier' placeholder='Courier Number'>
                             <button type='submit' class='update-btn'>Update</button>
@@ -93,17 +93,17 @@ if($_POST){
         }else{
 
             $order = "<div class='order'>
-                    <div class='order-number'>Order Number: $order_no</div>
+                        <div class='order-number'>Order Number: $order_no</div>
                         <div class='order-details'>
-                        <img src='uploads/products/$img'>
-                        <div class='product-info'>
-                            <h3>$name</h3>
-                        <p>Total Price: Rs. $price</p>
-                        <p>Order Status: $status</p>
-                        <p>Courier Number: $courier</p>
+                            <img src='uploads/products/$img'>
+                            <div class='product-info'>
+                                <h3>$name</h3>
+                                <p>Total Price: Rs. $price</p>
+                                <p>Order Status: $status</p>
+                                <p>Courier Number: $courier</p>
+                            </div>
                         </div>
-                    </div>
-                </div>";
+                    </div>";
         }
         
         echo $order;

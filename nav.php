@@ -111,11 +111,12 @@ $total_price = 0;
     <nav>
         <a href="index.php" class='link'>Home</a>
         <a href="store.php" class='link'>Store</a>
-        <a href="#" class='link'>Contact Us</a>
+        <a href="contact.php" class='link'>Contact Us</a>
         <?php
         if(isset($_SESSION["username"])){
             if($_SESSION["type"] == "customer"){
                 echo "<a href='orders.php' class='link'>My Orders<a>
+                <a href='dashboard.php' class='link'>Account</a>
                 <a class='link center-v' data-cart-btn><ion-icon name='bag'></ion-icon>Cart</a>
                 <a href='index.php?login=destroy' type='Logout' class='center-v link'><ion-icon name='person'></ion-icon>logout</a>";
             }else if($_SESSION["type"] == "admin"){
@@ -124,6 +125,7 @@ $total_price = 0;
                 <a href='index.php?login=destroy' title='Logout' class='center-v link'><ion-icon name='person'></ion-icon>logout</a>";
             }else if($_SESSION["type"] == "employee"){
                 echo "<a href='orders.php' class='link'>Orders</a>
+                <a href='dashboard.php' class='link'>dashboard</a>
                 <a href='index.php?login=destroy' title='Logout' class='center-v link'>
                     <ion-icon name='person'></ion-icon>logout
                 </a>";
@@ -157,9 +159,10 @@ $total_price = 0;
 
 
 <script>
+try{
 
-const cartBtn = document.querySelector("[data-cart-btn]");
-const cart = document.querySelector("[data-modal]")
+    const cartBtn = document.querySelector("[data-cart-btn]");
+    const cart = document.querySelector("[data-modal]")
 const cartclose =document.querySelector("[data-modal-close]");
 
 cartclose.addEventListener("click", () => {
@@ -181,13 +184,16 @@ cartBtn.addEventListener("click", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector("nav");
-
+  
   hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+      navLinks.classList.toggle("active");
     hamburger.classList.toggle("active")
   });
 });
 
+}catch{
+    
+}
 
 const btn = document.querySelector("[data-accent-btn]");
 const themebar = document.querySelector("[data-themebar]");

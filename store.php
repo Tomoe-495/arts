@@ -32,7 +32,7 @@
                 $search = $_GET["search"];
                 $sql = "SELECT * FROM products WHERE name LIKE '%$search%'";
             }else{
-                $sql = "SELECT * FROM products";
+                $sql = "SELECT * FROM products ORDER BY rand()";
             }
 
             $result = mysqli_query($conn, $sql);
@@ -51,9 +51,16 @@
                 $images = $row["img"];
                 $img = strpos($images, ',') !== false ? explode(',', $images)[0] : $images;
 
-                echo "<div class='product-card'>
-                        <a href='addcart.php?id=$id' class='p-add'><ion-icon name='bag-add'></ion-icon></a>
-                        <a href='item.php?id=$id'>
+                $cart_btn = "";
+                if(! isset($_SESSION["type"])){
+                    $cart_btn = "<a href='addcart.php?id=$id' class='p-add'><ion-icon name='bag-add'></ion-icon></a>";
+                }else if($_SESSION["type"] == "customer"){
+                    $cart_btn = "<a href='addcart.php?id=$id' class='p-add'><ion-icon name='bag-add'></ion-icon></a>";
+                }
+
+                echo "<div class='product-card'>".
+                        $cart_btn
+                        ."<a href='item.php?id=$id'>
                             <img src='uploads/products/$img'>
                         </a>
                         <a href='item.php?id=$id'>

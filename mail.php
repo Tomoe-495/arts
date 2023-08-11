@@ -13,11 +13,28 @@ function verificationCode($length=32) {
 }
 
 $type = $_GET["type"];
-$email = $_GET["email"];
 
-if($type == "register"){
+if($type == "contact"){
+    $email = "hasnain2202e@aptechsite.net";
+    $Username = "Arts Contact form";
+    $m_username = $_POST["username"];
+    $subject = $_POST["subject"];
+    $message = $_POST["message"];
+    $m_email = $_POST["email"];
+
+    $Altmessage = "From: $m_email \n Username: $m_username \n Message: $message";
+    $message = "<b>From:</b> $m_email
+                <br>
+                <b>Username:</b> $m_username
+                <br>
+                <b>Message:</b> $message
+    ";
+
+}else if($type == "register"){
+    $email = $_GET["email"];
     $Username = $_GET["username"];
     $password = $_GET["password"];
+    $subject = "Arts Email Verification";
     $Password = md5($password);
     $verification = verificationCode();
 
@@ -73,20 +90,21 @@ $mail->Port	 = 587;
 
 $mail->setFrom('hasnain2202e@aptechsite.net', 'Arts');		
 // $mail->addAddress('receiver1@gfg.com');
-if($type == "register"){
-    $mail->addAddress($email, $Username);
-}
+$mail->addAddress($email, $Username);
 
 $mail->isHTML(true);
-$mail->Subject = 'ARTS Verification';
+$mail->Subject = $subject;
 $mail->Body = $message;
 $mail->AltBody = $Altmessage;
 $mail->send();
 // echo "Mail has been sent successfully!";
 
 if($type == "register"){
-    setcookie("register", "verify", time()+10);
+    setcookie("register", "verify", time()+5);
     header("location: login.php");
+}else if($type == "contact"){
+    setcookie("register", "sent", time()+5);
+    header("location: contact.php");
 }
 
 ?>
