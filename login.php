@@ -63,7 +63,11 @@ if($_GET){
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        header("location: mail.php?type=register&username=$username&email=$email&password=$password");
+        // header("location: mail.php?type=register&username=$username&email=$email&password=$password");
+
+        echo "<script>";
+        echo "location.href = 'mail.php?type=register&username=$username&email=$email&password=$password'";
+        echo "</script>";
 
     }else if($_GET["type"] == "login"){
         $email = $_POST["email"];

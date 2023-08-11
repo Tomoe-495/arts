@@ -8,3 +8,6 @@ and run all the queries in phpmyadmin or whatever you use to run mysql queries
 you can login as admin:
 email: admin@gmail.com
 password: admin
+
+or just visit: https://arts495.000webhostapp.com/
+

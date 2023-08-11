@@ -13,6 +13,9 @@ create table accounts(
     verification_token varchar(150)
 )
 
+insert into accounts(username, email, password, type, verify) values
+("admin", "admin@gmail.com", "21232f297a57a5a743894a0e4a801fc3", "admin", 1)
+
 create table products(
     id int primary key auto_increment,
     product_year int(2) default 23,

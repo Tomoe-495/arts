@@ -44,7 +44,6 @@ if($type == "contact"){
     $result = mysqli_query($conn, $sql);
 
     $row = mysqli_num_rows($result);
-    echo $row;
     if($row > 0){
         setcookie("register", "registered", time()+10);
         header("location: login.php");
