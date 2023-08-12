@@ -86,7 +86,7 @@ if(isset($_POST["newpass"])){
 
     <div class="d-mainbar">
 
-        <div class="change-password">
+        <div class="change-password sect" data-pass>
             <h2>Change Password</h2>
             <form action='dashboard.php' method='post'>
                 <input type="password" name='newpass' placeholder="New Password" pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$' required>
@@ -174,6 +174,7 @@ if(isset($_POST["newpass"])){
 
 switchPanel('data-all-btn', 'data-all');
 switchPanel('data-emp-btn', 'data-emp');
+switchPanel('data-pass-btn', 'data-pass');
 
 function switchPanel(btn, sect){
     document.querySelector(`[${btn}]`).addEventListener("click", () => {
