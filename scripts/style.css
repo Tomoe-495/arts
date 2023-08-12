@@ -107,7 +107,7 @@ header {
   color: #353535;
   height: 70px;
 }
-header .logo {
+header .logo, header a {
   height: 100%;
   transition: all 250ms ease;
 }

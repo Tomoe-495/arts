@@ -107,7 +107,9 @@ $total_price = 0;
 
 <header>
     <!-- <div class="logo">LOGO</div> -->
-    <img class="logo" src="uploads/logo.png" alt="logo">
+    <a href='index.php'>
+        <img class="logo" src="uploads/logo.png" alt="logo">
+    </a>
     <nav>
         <a href="index.php" class='link'>Home</a>
         <a href="store.php" class='link'>Store</a>

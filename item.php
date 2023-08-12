@@ -62,12 +62,13 @@ $images = explode(",",$row["img"]);
                 <p class="product-price">Rs. <?php echo $price?></p>
                 <?php
                 
+                if(isset($_SESSION["type"])){
                 if($_SESSION["type"] == "customer"){
                     echo "<form method='post' action='addcart.php?id=<?php echo $id?>' class='add-to-cart'>
                         <input name='quantity' type='number' min='1' value='1'>
                         <button class='addcart'>Add to Cart</button>
                     </form>";
-                }
+                }}
 
                 ?>
                 <p class='product-desc'><?php echo $description?></p>
