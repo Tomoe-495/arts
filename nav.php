@@ -181,6 +181,9 @@ cartBtn.addEventListener("click", () => {
     cart.style.right = "0";
 })
 
+}catch{
+    
+}
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector("nav");
@@ -191,9 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-}catch{
-    
-}
 
 const btn = document.querySelector("[data-accent-btn]");
 const themebar = document.querySelector("[data-themebar]");
