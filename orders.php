@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if($_POST){
     $o_id = $_GET["id"];

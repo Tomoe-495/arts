@@ -1,7 +1,7 @@
 <?php
 $current_file = basename($_SERVER['PHP_SELF']);
 
-if(isset($_GET["login"])){
+if(isset($_GET["destroy"])){
     session_destroy();
     header("location: index.php");
 }
@@ -115,7 +115,7 @@ $total_price = 0;
         <a href="store.php" class='link'>Store</a>
         <a href="contact.php" class='link'>Contact Us</a>
         <?php
-        if(isset($_SESSION["username"])){
+        if(isset($_SESSION["type"])){
             if($_SESSION["type"] == "customer"){
                 echo "<a href='orders.php' class='link'>My Orders<a>
                 <a href='dashboard.php' class='link'>Account</a>
@@ -128,7 +128,7 @@ $total_price = 0;
             }else if($_SESSION["type"] == "employee"){
                 echo "<a href='orders.php' class='link'>Orders</a>
                 <a href='dashboard.php' class='link'>dashboard</a>
-                <a href='index.php?login=destroy' title='Logout' class='center-v link'>
+                <a href='index.php?destroy=login' title='Logout' class='center-v link'>
                     <ion-icon name='person'></ion-icon>logout
                 </a>";
             }

@@ -1,5 +1,6 @@
-<!-- to start the server -->
-<!-- php -S localhost:5500 -->
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
