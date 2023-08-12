@@ -114,6 +114,7 @@ header .logo {
 header nav {
   display: flex;
   gap: 2em;
+  z-index: 999
 }
 header .link {
   cursor: pointer;
@@ -334,6 +335,8 @@ header .hamburger .bar3 {
 @media screen and (max-width: 768px) {
   .help-content {
     flex-direction: column;
+    padding: 0;
+    text-align: center;
     gap: 1em;
   }
 }
@@ -427,6 +430,7 @@ header .hamburger .bar3 {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 20px;
+  text-align: center
 }
 
 .interested-description {
@@ -1029,7 +1033,7 @@ input[type=submit] {
 
 .modal {
   position: fixed;
-  right: -100%;
+  right: -110%;
   top: 0;
   width: 100vw;
   height: 100vh;

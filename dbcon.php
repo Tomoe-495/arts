@@ -1,12 +1,12 @@
 <?php
 
 // for linux
-$servername = "Tomoe";
-$username = "root";
+// $servername = "Tomoe";
+// $username = "root";
 
 // for windows
-// $servername = "root";
-// $username = "localhost";
+$servername = "localhost";
+$username = "root";
 
 $password = "";
 $database = "arts";

@@ -166,14 +166,14 @@ try{
 const cartclose =document.querySelector("[data-modal-close]");
 
 cartclose.addEventListener("click", () => {
-    cart.style.right = "-100%";
+    cart.style.right = "-110%";
 })
 
 document.addEventListener('click', function(event) {
   const cartSect = document.querySelector('.cart-sect');
 
   if (cart.contains(event.target) && !cartSect.contains(event.target)) {
-    cart.style.right = "-100%";
+    cart.style.right = "-110%";
   }
 });
 
