@@ -1,7 +1,7 @@
 <?php
 $current_file = basename($_SERVER['PHP_SELF']);
 
-if(isset($_GET["destroy"])){
+if(isset($_GET["login"])){
     session_destroy();
     header("location: index.php");
 }
@@ -25,7 +25,7 @@ if(isset($_GET["remove"])){
         $sql = "update cart set quantity = $quantity where id = $cart_id";
     }
     mysqli_query($conn, $sql);
-    setcookie("cart", "remove", time()+5);
+    setcookie("cart", "remove", time()+10);
     header("location: $file");
 }
 

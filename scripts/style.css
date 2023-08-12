@@ -1046,12 +1046,13 @@ input[type=submit] {
   transition: all 250ms ease-in;
 }
 .modal .close {
-  position: absolute;
+  position: fixed;
   left: 10px;
   top: 10px;
   font-size: 2em;
   cursor: pointer;
   transition: all 250ms;
+   z-index: 99
 }
 .modal .close:hover {
   color: var(--accent);
