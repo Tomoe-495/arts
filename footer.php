@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2023 Your Company. All rights reserved.</p>
+        <p>&copy; 2023 Arts. All rights reserved.</p>
     </div>
 </footer>
 
