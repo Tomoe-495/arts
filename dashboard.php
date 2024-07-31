@@ -3,105 +3,108 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <?php include "header.php"?>
+    <?php include "header.php" ?>
 </head>
+
 <body>
 
-<div class="mail-notification" data-noti>
-    <p data-noti-para></p>
-    <ion-icon class="close-noti" name="close-outline" data-noti-close></ion-icon>
-</div>
+    <div class="mail-notification" data-noti>
+        <p data-noti-para></p>
+        <ion-icon class="close-noti" name="close-outline" data-noti-close></ion-icon>
+    </div>
 
-<?php
-include "nav.php";
+    <?php
+    include "nav.php";
 
-$error_msg = "";
+    $error_msg = "";
 
-// adding the employee here
-if(isset($_POST["newpass"])){
-    $newpass = $_POST["newpass"];
-    $repass = $_POST["repass"];
+    // adding the employee here
+    if (isset($_POST["newpass"])) {
+        $newpass = $_POST["newpass"];
+        $repass = $_POST["repass"];
 
-    if($newpass == $repass){
-        $id = $_SESSION["id"];
-        $pass = md5($newpass);
+        if ($newpass == $repass) {
+            $id = $_SESSION["id"];
+            $pass = md5($newpass);
+            include "dbcon.php";
+            $sql = "UPDATE accounts set password = '$pass' where id = $id";
+            mysqli_query($conn, $sql);
+            setcookie("register", "passreset", time() + 5);
+            header("location: dashboard.php");
+        } else {
+            $error_msg = "password don't match";
+        }
+
+    } else if (isset($_POST["username"])) {
+        $Username = $_POST["username"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+        $Password = md5($password);
+
         include "dbcon.php";
-        $sql = "UPDATE accounts set password = '$pass' where id = $id";
-        mysqli_query($conn, $sql);
-        setcookie("register", "passreset", time()+5);
-        header("location: dashboard.php");
-    }else{
-        $error_msg = "password don't match";
-    }
 
-}else if(isset($_POST["username"])){
-    $Username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $Password = md5($password);
-
-    include "dbcon.php";
-
-    $sql = "INSERT into accounts(username, email, password, type, verify) values
+        $sql = "INSERT into accounts(username, email, password, type, verify) values
     ('$Username', '$email', '$Password', 'employee', 1)";
 
-    $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
 
-    if($result){
-        setcookie("register", "added", time()+5);
-        header("location: dashboard.php");
+        if ($result) {
+            setcookie("register", "added", time() + 5);
+            header("location: dashboard.php");
+        }
+    } else if (isset($_GET["delete"])) {
+        $id = $_GET["delete"];
+        include "dbcon.php";
+
+        $sql = "DELETE FROM accounts where id = $id";
+
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+            setcookie("register", "removed", time() + 5);
+            header("location: dashboard.php");
+        }
     }
-}else if(isset($_GET["delete"])){
-    $id = $_GET["delete"];
-    include "dbcon.php";
 
-    $sql = "DELETE FROM accounts where id = $id";
+    ?>
 
-    $result = mysqli_query($conn, $sql);
-    if($result){
-        setcookie("register", "removed", time()+5);
-        header("location: dashboard.php");
-    }
-}
+    <div class="dash-container">
 
-?>
-
-<div class="dash-container">
-
-    <div class="d-sidebar">
-        <?php
-            if($_SESSION["type"] == "admin"){
+        <div class="d-sidebar">
+            <?php
+            if ($_SESSION["type"] == "admin") {
                 echo "<button class='active' data-all-btn>View Employees</button>
                 <button data-emp-btn>Add Employee</button>
                 <button data-pass-btn>Change Password</button>";
-            }else if($_SESSION["type"] == "customer" || $_SESSION["type"] == "employee"){
+            } else if ($_SESSION["type"] == "customer" || $_SESSION["type"] == "employee") {
                 echo "<button class='active' data-pass-btn>Change Password</button>";
             }
-        ?>
-    </div>
-
-    <div class="d-mainbar">
-
-        <div class="change-password sect" data-pass>
-            <h2>Change Password</h2>
-            <form action='dashboard.php' method='post'>
-                <input type="password" name='newpass' placeholder="New Password" pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$' required>
-                <input type="password" name='repass' placeholder="Re-type Password" required>
-                <span class="pass-error"><?php echo $error_msg?></span>
-                <button type="submit">Change Password</button>
-            </form>
+            ?>
         </div>
 
+        <div class="d-mainbar">
+
+            <div class="change-password sect <?php if($_SESSION['type'] != 'admin') echo 'active'?>" data-pass>
+                <h2>Change Password</h2>
+                <form action='dashboard.php' method='post'>
+                    <input type="password" name='newpass' placeholder="New Password"
+                        pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?|\-])\S{8,}$' required>
+                    <input type="password" name='repass' placeholder="Re-type Password" required>
+                    <span class="pass-error"><?php echo $error_msg ?></span>
+                    <button type="submit">Change Password</button>
+                </form>
+            </div>
 
 
-        <?php
-        
-        if($_SESSION["type"] == "admin"){
-            echo "<div class='employees active sect' data-all>
+
+            <?php
+
+            if ($_SESSION["type"] == "admin") {
+                echo "<div class='employees active sect' data-all>
                 <table class='employee-table'>
                     <thead>
                         <tr>
@@ -113,43 +116,43 @@ if(isset($_POST["newpass"])){
                     </thead>
                     <tbody>";
 
-                        
-                        include "dbcon.php";
 
-                        $sql = "SELECT * FROM accounts where type = 'employee'";
+                include "dbcon.php";
 
-                        $result = mysqli_query($conn, $sql);
-                        $numRows = mysqli_num_rows($result);
+                $sql = "SELECT * FROM accounts where type = 'employee'";
 
-                        if($numRows != 0){
-                            while($row = mysqli_fetch_assoc($result)){
-                                $id = $row["id"];
-                                $username = $row["username"];
-                                $email = $row["email"];
-                                $created = $row["created_int"];
-                                
-                                $t_row = "<tr>    
+                $result = mysqli_query($conn, $sql);
+                $numRows = mysqli_num_rows($result);
+
+                if ($numRows != 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $id = $row["id"];
+                        $username = $row["username"];
+                        $email = $row["email"];
+                        $created = $row["created_int"];
+
+                        $t_row = "<tr>    
                                         <td>$username</td>
                                         <td>$email</td>
                                         <td>$created</td>
                                         <td><a href='dashboard.php?delete=$id'>Delete</a></td>
                                     </tr>";
-                                echo $t_row;
-                            }
-                        }
+                        echo $t_row;
+                    }
+                }
 
 
-            echo   "</tbody>
+                echo "</tbody>
                 </table>";
-                
-                if($numRows == 0){
+
+                if ($numRows == 0) {
                     echo "<h1 class='no-emp'>There are no Employees</h1>";
                 }
 
-            echo "</div>";
-            
-            
-            echo "<div class='addemployee sect' data-emp>
+                echo "</div>";
+
+
+                echo "<div class='addemployee sect' data-emp>
                 
             <div class='d-form-sect'>
                 <form action='dashboard.php' method='post'>
@@ -161,68 +164,75 @@ if(isset($_POST["newpass"])){
             </div>
             
         </div>";
-    }
+            }
 
-    ?>
+            ?>
 
+        </div>
     </div>
-</div>
 
 
 
-<script>
+    <script>
 
-switchPanel('data-all-btn', 'data-all');
-switchPanel('data-emp-btn', 'data-emp');
-switchPanel('data-pass-btn', 'data-pass');
 
-function switchPanel(btn, sect){
-    document.querySelector(`[${btn}]`).addEventListener("click", () => {
-        for(let s of document.querySelectorAll(".sect")){
-            s.classList.remove("active");
+        switchPanel('data-pass-btn', 'data-pass');
+        try{
+            switchPanel('data-all-btn', 'data-all');
+            switchPanel('data-emp-btn', 'data-emp');
+        }catch {
+
         }
-        for(let b of document.querySelectorAll("button")){
-            b.classList.remove("active");
+
+
+        function switchPanel(btn, sect) {
+            document.querySelector(`[${btn}]`).addEventListener("click", () => {
+                for (let s of document.querySelectorAll(".sect")) {
+                    s.classList.remove("active");
+                }
+                for (let b of document.querySelectorAll("button")) {
+                    b.classList.remove("active");
+                }
+                document.querySelector(`[${sect}]`).classList.add("active");
+                document.querySelector(`[${btn}]`).classList.add("active");
+            })
         }
-        document.querySelector(`[${sect}]`).classList.add("active");
-        document.querySelector(`[${btn}]`).classList.add("active");
-    })
-}
 
-let bar = document.querySelector("[data-noti]");
-let barPara = document.querySelector("[data-noti-para]");
-let barClose = document.querySelector("[data-noti-close]");
+        let bar = document.querySelector("[data-noti]");
+        let barPara = document.querySelector("[data-noti-para]");
+        let barClose = document.querySelector("[data-noti-close]");
 
-let green = "#78e49c";
-let red = "#e06c6c";
-let cookies = checkCookies();
+        let green = "#78e49c";
+        let red = "#e06c6c";
+        let cookies = checkCookies();
 
-if(cookies["register"]){
+        if (cookies["register"]) {
 
-    if(cookies["register"] == "added"){
-        notifition("Employee has been added", green);
-    }else if(cookies["register"] == "removed"){
-        notifition("Employee has been removed", red);
-    }else if(cookies["register"] == "passreset"){
-        notifition("password has been changed", green);
-    }
-}
+            if (cookies["register"] == "added") {
+                notifition("Employee has been added", green);
+            } else if (cookies["register"] == "removed") {
+                notifition("Employee has been removed", red);
+            } else if (cookies["register"] == "passreset") {
+                notifition("password has been changed", green);
+            }
+        }
 
 
-function notifition(msg, color){
-    bar.style.backgroundColor = color;
-    barPara.innerHTML = msg;
-    bar.style.display = "flex";
-}
+        function notifition(msg, color) {
+            bar.style.backgroundColor = color;
+            barPara.innerHTML = msg;
+            bar.style.display = "flex";
+        }
 
-barClose.addEventListener("click", () => {
-    bar.style.display = "none";
-})
+        barClose.addEventListener("click", () => {
+            bar.style.display = "none";
+        })
 
 
-</script>
+    </script>
 
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>

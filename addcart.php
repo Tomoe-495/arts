@@ -28,7 +28,7 @@ if($numRows > 0){
     $quantity = $row["quantity"];
     $quantity += 1;
 
-    $sql = "update cart set quantity = $quantity where id = $id";
+    $sql = "UPDATE cart set quantity = $quantity where id = $id";
 }else{
     $sql = "INSERT INTO cart(product_id, customer_id, quantity) values($p_id, $c_id, $quantity)";
 }

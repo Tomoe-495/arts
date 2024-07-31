@@ -64,7 +64,7 @@ $images = explode(",",$row["img"]);
                 
                 if(isset($_SESSION["type"])){
                 if($_SESSION["type"] == "customer"){
-                    echo "<form method='post' action='addcart.php?id=<?php echo $id?>' class='add-to-cart'>
+                    echo "<form method='post' action='addcart.php?id=$id' class='add-to-cart'>
                         <input name='quantity' type='number' min='1' value='1'>
                         <button class='addcart'>Add to Cart</button>
                     </form>";

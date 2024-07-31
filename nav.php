@@ -106,7 +106,6 @@ $total_price = 0;
 
 
 <header>
-    <!-- <div class="logo">LOGO</div> -->
     <a href='index.php'>
         <img class="logo" src="uploads/logo.png" alt="logo">
     </a>
@@ -117,7 +116,7 @@ $total_price = 0;
         <?php
         if(isset($_SESSION["type"])){
             if($_SESSION["type"] == "customer"){
-                echo "<a href='orders.php' class='link'>My Orders<a>
+                echo "<a href='orders.php' class='link'>My Orders</a>
                 <a href='dashboard.php' class='link'>Account</a>
                 <a class='link center-v' data-cart-btn><ion-icon name='bag'></ion-icon>Cart</a>
                 <a href='index.php?login=destroy' type='Logout' class='center-v link'><ion-icon name='person'></ion-icon>logout</a>";

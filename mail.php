@@ -82,8 +82,8 @@ $mail->SMTPDebug = 0;
 $mail->isSMTP();
 $mail->Host	 = 'smtp.gmail.com;';				
 $mail->SMTPAuth = true;							
-$mail->Username = '[EMAIL HERE]';				
-$mail->Password = '[PASSWORD HERE]';					
+$mail->Username = 'hasnainsiddique495@gmail.com';				
+$mail->Password = 'mzoq pmlp dfsl orom';					
 $mail->SMTPSecure = 'tls';							
 $mail->Port	 = 587;
 

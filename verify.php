@@ -23,7 +23,7 @@ $token = $_GET["token"];
 
 include "dbcon.php";
 
-$sql = "SELECT * from accounts where id = $id and verification_token = '$token'";
+$sql = "SELECT * FROM accounts WHERE id = $id AND verification_token = '$token'";
 
 $result = mysqli_query($conn, $sql);
 
