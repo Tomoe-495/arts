@@ -1,5 +1,13 @@
 <?php
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+
 function verificationCode($length=32) {
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     $string = '';
@@ -80,14 +88,14 @@ $mail = new PHPMailer(true);
 
 $mail->SMTPDebug = 0;
 $mail->isSMTP();
-$mail->Host	 = 'smtp.gmail.com;';				
-$mail->SMTPAuth = true;							
-$mail->Username = 'hasnainsiddique495@gmail.com';				
-$mail->Password = 'mzoq pmlp dfsl orom';					
-$mail->SMTPSecure = 'tls';							
+$mail->Host	 = 'smtp.gmail.com;';
+$mail->SMTPAuth = true;
+$mail->Username = $_ENV['EMAIL'];
+$mail->Password = $_ENV['PASSWORD'];
+$mail->SMTPSecure = 'tls';
 $mail->Port	 = 587;
 
-$mail->setFrom('hasnain2202e@aptechsite.net', 'Arts');		
+$mail->setFrom('hasnain2202e@aptechsite.net', 'Arts');
 // $mail->addAddress('receiver1@gfg.com');
 $mail->addAddress($email, $Username);
 
@@ -106,4 +114,3 @@ if($type == "register"){
     header("location: contact.php");
 }
 
-?>

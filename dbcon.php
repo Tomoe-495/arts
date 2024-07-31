@@ -1,13 +1,12 @@
 <?php
 
 // for linux
-// $servername = "Tomoe";
-// $username = "root";
+$servername = "Tomoe";
 
 // for windows
-$servername = "localhost";
-$username = "root";
+// $servername = "localhost";
 
+$username = "root";
 $password = "";
 $database = "arts";
 
@@ -21,4 +20,3 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 //     echo "not connected";
 // }
 
-?>
